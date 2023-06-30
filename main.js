@@ -54,7 +54,7 @@ const notify1 = async (contents) => {
 }
 
 const notify2 = async (contents) => {
-  const token = process.env.NOTIFY
+  const token = process.env.NOTIFYTIAN
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
