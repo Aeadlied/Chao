@@ -1,17 +1,19 @@
-function readLineFromFile(filePath) {
-  return fetch(filePath)
-    .then(response => response.text())
-    .then(data => {
-      // 将文件内容按行分割
-      const lines = data.split('\n');
-      // 随机生成要读取的行数
-      const lineNumber = Math.floor(Math.random() * lines.length) + 1;
-      // 获取指定行的内容并返回
-      return lines[lineNumber - 1];
-    })
-    .catch(error => console.error(error));
-}
+const fs = require('fs').promises;
 
+async function readLineFromFile(filePath) {
+  try {
+    // 读取文件内容
+    const data = await fs.readFile(filePath, 'utf8');
+    // 将文件内容按行分割
+    const lines = data.split('\n');
+    // 随机生成要读取的行数
+    const lineNumber = Math.floor(Math.random() * lines.length) + 1;
+    // 获取指定行的内容并返回
+    return lines[lineNumber - 1];
+  } catch (error) {
+    console.error(error);
+  }
+}
 const notify = async (contents) => {
   const token = process.env.NOTIFY
   if (!token || !contents) return
