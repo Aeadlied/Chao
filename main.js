@@ -36,7 +36,7 @@ const notify = async (contents) => {
     body: JSON.stringify({
       token,
       title: '来自超超的每日请安',
-      content: contents,
+      content: contents.join('<br>'),
       template: 'markdown',
     }),
   })
