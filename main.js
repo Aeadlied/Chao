@@ -39,7 +39,7 @@ async function readLineFromFile(filePath) {
   }
 }
 const notify = async (contents) => {
-  const token = process.env.NOTIFY
+  const token = process.env.GLADOS
   if (!token || !contents) return
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
