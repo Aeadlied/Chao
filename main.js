@@ -8,7 +8,7 @@ async function readLineFromFile(filePath) {
     // 将文件内容按行分割
     const linesFace = dataFace.split('\n');
     // 随机生成要读取的行数
-    const lineNumberFace = Math.floor(Math.random() * lines.length) + 1;
+    const lineNumberFace = Math.floor(Math.random() * linesFace.length) + 1;
     // 获取指定行的内容
    const lineContentFace = linesFace[lineNumberFace - 1];
 
