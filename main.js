@@ -1,15 +1,15 @@
-const glados = async () => {
-  const url = './file.txt';
-	fetch(url)
-  .then(response => response.text())
-  .then(data => {
-    // 将文件内容按行分割
-    const lines = data.split('\n');
-    // 随机生成要读取的行数
-    const lineNumber = Math.floor(Math.random() * lines.length) + 1;
-    // 获取指定行的内容
-    const lineContent = lines[lineNumber - 1];
-	return lineContent;)
+function readLineFromFile(filePath) {
+  return fetch(filePath)
+    .then(response => response.text())
+    .then(data => {
+      // 将文件内容按行分割
+      const lines = data.split('\n');
+      // 随机生成要读取的行数
+      const lineNumber = Math.floor(Math.random() * lines.length) + 1;
+      // 获取指定行的内容并返回
+      return lines[lineNumber - 1];
+    })
+    .catch(error => console.error(error));
 }
 
 const notify = async (contents) => {
@@ -28,7 +28,9 @@ const notify = async (contents) => {
 }
 
 const main = async () => {
-  await notify(await glados())
+  readLineFromFile('./file.txt')
+  .then(lineContent => notify(lineContent))
+  .catch(error => console.error(error));
 }
 
 main()
