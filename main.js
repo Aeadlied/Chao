@@ -9,7 +9,7 @@ const glados = async () => {
     const lineNumber = Math.floor(Math.random() * lines.length) + 1;
     // 获取指定行的内容
     const lineContent = lines[lineNumber - 1];
-	return lineContent;
+	return lineContent;)
 }
 
 const notify = async (contents) => {
