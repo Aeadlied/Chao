@@ -50,12 +50,12 @@ const notify = async (contents) => {
       template: 'markdown',
     }),
   })
-  const tokenTian = process.env.NOTIFY
+  token = process.env.NOTIFY
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      tokenTian,
+      token,
       title: '来自超超的每日请安2',
       content: contents,
       template: 'markdown',
