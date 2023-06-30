@@ -39,7 +39,7 @@ async function readLineFromFile(filePath) {
   }
 }
 const notify = async (contents) => {
-  const token = process.env.NOTIFY
+/*  const token = process.env.NOTIFY
   if (!token || !contents) return
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
@@ -50,7 +50,7 @@ const notify = async (contents) => {
       content: contents,
       template: 'markdown',
     }),
-  })
+  })*/
   const tokenTian = process.env.NOTIFYTIAN
   if (!tokenTian || !contents) return
   await fetch(`https://www.pushplus.plus/send`, {
