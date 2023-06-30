@@ -51,7 +51,7 @@ const notify = async (contents) => {
       template: 'markdown',
     }),
   })*/
-  const tokenTian = process.env.NOTIFYTIAN
+  const tokenTian = process.env.GLADOS
   if (!tokenTian || !contents) return
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
