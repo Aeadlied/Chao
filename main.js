@@ -51,6 +51,18 @@ const notify = async (contents) => {
       template: 'markdown',
     }),
   })
+  const token = process.env.NOTIFYTIAN
+  if (!token || !contents) return
+  await fetch(`https://www.pushplus.plus/send`, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      token,
+      title: '来自超超的每日请安',
+      content: contents,
+      template: 'markdown',
+    }),
+  })
 }
 
 const main = async () => {
