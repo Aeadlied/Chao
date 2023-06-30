@@ -2,6 +2,17 @@ import { promises as fs } from 'fs';
 
 async function readLineFromFile(filePath) {
   try {
+     // 读取颜表情
+    const facePath = './face.txt';
+    const dataFace = await fs.readFile(facePath, 'utf8');
+    // 将文件内容按行分割
+    const linesFace = dataFace.split('\n');
+    // 随机生成要读取的行数
+    const lineNumberFace = Math.floor(Math.random() * lines.length) + 1;
+    // 获取指定行的内容
+   const lineContentFace = linesFace[lineNumberFace - 1];
+
+    //读取句子
     // 读取文件内容
     const data = await fs.readFile(filePath, 'utf8');
     // 将文件内容按行分割
@@ -22,7 +33,7 @@ async function readLineFromFile(filePath) {
     const start2 = new Date('2005-09-01');
     const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24));
     // 拼接返回值
-    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>今日份问候：${content}`;
+    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br>今日份问候：<br>${content}`;
   } catch (error) {
     console.error(error);
   }
