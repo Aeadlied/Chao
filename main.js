@@ -1,33 +1,15 @@
 const glados = async () => {
-  const cookie = process.env.GLADOS
-  if (!cookie) return
-  try {
-    const headers = {
-      'cookie': cookie,
-      'referer': 'https://glados.rocks/console/checkin',
-      'user-agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)',
-    }
-    const checkin = await fetch('https://glados.rocks/api/user/checkin', {
-      method: 'POST',
-      headers: { ...headers, 'content-type': 'application/json' },
-      body: '{"token":"glados.network"}',
-    }).then((r) => r.json())
-    const status = await fetch('https://glados.rocks/api/user/status', {
-      method: 'GET',
-      headers,
-    }).then((r) => r.json())
-    return [
-      'Checkin OK',
-      `${checkin.message}`,
-      `Left Days ${Number(status.data.leftDays)}`,
-    ]
-  } catch (error) {
-    return [
-      'Checkin Error',
-      `${error}`,
-      `<${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}>`,
-    ]
-  }
+  const url = './file.txt';
+	fetch(url)
+  .then(response => response.text())
+  .then(data => {
+    // 将文件内容按行分割
+    const lines = data.split('\n');
+    // 随机生成要读取的行数
+    const lineNumber = Math.floor(Math.random() * lines.length) + 1;
+    // 获取指定行的内容
+    const lineContent = lines[lineNumber - 1];
+	return lineContent;
 }
 
 const notify = async (contents) => {
@@ -38,7 +20,7 @@ const notify = async (contents) => {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       token,
-      title: contents[0],
+      title: '来自超超的每日请安',
       content: contents.join('<br>'),
       template: 'markdown',
     }),
