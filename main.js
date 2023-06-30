@@ -38,7 +38,8 @@ async function readLineFromFile(filePath) {
     console.error(error);
   }
 }
-const notify = async (contents) => {
+
+const notify1 = async (contents) => {
   const token = process.env.NOTIFY
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
@@ -50,7 +51,10 @@ const notify = async (contents) => {
       template: 'markdown',
     }),
   })
-  token = process.env.NOTIFY
+}
+
+const notify2 = async (contents) => {
+  const token = process.env.NOTIFY
   await fetch(`https://www.pushplus.plus/send`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
@@ -65,7 +69,7 @@ const notify = async (contents) => {
 
 const main = async () => {
   readLineFromFile('./file.txt')
-  .then(lineContent => notify(lineContent))
+  .then(lineContent => {notify1(lineContent);notify2(lineContent)})
   .catch(error => console.error(error));
 }
 
