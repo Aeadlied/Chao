@@ -46,7 +46,7 @@ const notify = async (contents) => {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       token,
-      title: '来自超超的每日请安',
+      title: '来自超超的每日请安1',
       content: contents,
       template: 'markdown',
     }),
@@ -58,7 +58,7 @@ const notify = async (contents) => {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
       tokenTian,
-      title: '来自超超的每日请安',
+      title: '来自超超的每日请安2',
       content: contents,
       template: 'markdown',
     }),
