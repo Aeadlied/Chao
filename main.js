@@ -9,7 +9,11 @@ async function readLineFromFile(filePath) {
     // 随机生成要读取的行数
     const lineNumber = Math.floor(Math.random() * lines.length) + 1;
     // 获取指定行的内容并返回
-    return lines[lineNumber - 1];
+   const lineContent = lines[lineNumber - 1];
+    // 使用正则表达式匹配行号和句子
+    const matchResult = lineContent.match(/^(\d+)\.(.*)$/);
+    // 如果匹配成功，则返回去掉行号的句子；否则返回原始内容
+    return matchResult ? matchResult[2].trim() : lineContent.trim();
   } catch (error) {
     console.error(error);
   }
