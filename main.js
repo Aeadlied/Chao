@@ -33,7 +33,7 @@ async function readLineFromFile(filePath) {
     const start2 = new Date('2005-09-01');
     const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24));
     // 拼接返回值
-    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>今日份问候：<br>${content}<br><br>今日份美图：<br><img src='http://rx475xwwv.hb-bkt.clouddn.com/img/1.jpg?e=1688210887&token=7RdB1nKTIbB6INhUwfDAq5wIsMCDAXgjW-zD1Jbo:tIU50oPHq1rw13_YXPJJTuAD8i8=' />`;
+    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>今日份问候：<br>${content}<br><br>今日份美图：<br><img src='http://www.pushplus.plus/doc/img/push.png' />`;
   } catch (error) {
     console.error(error);
   }
