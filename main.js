@@ -3,7 +3,7 @@ import { promises as fs } from 'fs';
 async function readLineFromFile(filePath) {
   try {
      // 读取颜表情
-    const facePath = './face.txt';
+    const facePath = 'http://rx475xwwv.hb-bkt.clouddn.com/face.txt';
     const dataFace = await fs.readFile(facePath, 'utf8');
     // 将文件内容按行分割
     const linesFace = dataFace.split('\n');
@@ -32,8 +32,17 @@ async function readLineFromFile(filePath) {
     // 计算认识的天数
     const start2 = new Date('2005-09-01');
     const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24));
+
+    //读取图片
+    const countOfImgPath = 'http://rx475xwwv.hb-bkt.clouddn.com/CountOfImage.txt';
+    const dataCount = await fs.readFile(countOfImgPath, 'utf8');
+    // 将文件内容按行分割
+    const linesCount = dataCount.split('\n');
+    const count = linesCount[0];
+    const imgUrl = `http://rx475xwwv.hb-bkt.clouddn.com/img/${count}.jpg`;
+
     // 拼接返回值
-    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>今日份问候：<br>${content}<br><br>今日份美图：<br><img src='http://rx475xwwv.hb-bkt.clouddn.com/img/1.jpg?e=1688298492&token=7RdB1nKTIbB6INhUwfDAq5wIsMCDAXgjW-zD1Jbo:6ebMDL2inGCh6rPdLV6en8EWXUo=' />`;
+    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>今日份问候：<br>${content}<br><br>今日份美图：<br><img src=${imgUrl} />`;
   } catch (error) {
     console.error(error);
   }
@@ -68,7 +77,7 @@ const notify2 = async (contents) => {
 }
 
 const main = async () => {
-  readLineFromFile('./file.txt')
+  readLineFromFile('http://rx475xwwv.hb-bkt.clouddn.com/file.txt')
   .then(lineContent => {notify1(lineContent);notify2(lineContent)})
   .catch(error => console.error(error));
 }
