@@ -1,10 +1,19 @@
 import { promises as fs } from 'fs';
+import fetch from 'node-fetch';
+
+async function readRemoteFile(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch remote file ${url}`);
+  }
+  return await response.text();
+}
 
 async function readLineFromFile(filePath) {
   try {
      // 读取颜表情
     const facePath = 'http://rx475xwwv.hb-bkt.clouddn.com/face.txt';
-    const dataFace = await fs.readFile(facePath, 'utf8');
+    const dataFace = await readRemoteFile(facePath);
     // 将文件内容按行分割
     const linesFace = dataFace.split('\n');
     // 随机生成要读取的行数
@@ -14,7 +23,7 @@ async function readLineFromFile(filePath) {
 
     //读取句子
     // 读取文件内容
-    const data = await fs.readFile(filePath, 'utf8');
+    const data = await readRemoteFile(filePath);
     // 将文件内容按行分割
     const lines = data.split('\n');
     // 随机生成要读取的行数
@@ -35,7 +44,7 @@ async function readLineFromFile(filePath) {
 
     //读取图片
     const countOfImgPath = 'http://rx475xwwv.hb-bkt.clouddn.com/CountOfImage.txt';
-    const dataCount = await fs.readFile(countOfImgPath, 'utf8');
+    const dataCount = await readRemoteFile(countOfImgPath);
     // 将文件内容按行分割
     const linesCount = dataCount.split('\n');
     const count = linesCount[0];
