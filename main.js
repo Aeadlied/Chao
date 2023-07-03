@@ -39,7 +39,8 @@ async function readLineFromFile(filePath) {
     // 将文件内容按行分割
     const linesCount = dataCount.split('\n');
     const count = linesCount[0];
-    const imgUrl = `http://rx475xwwv.hb-bkt.clouddn.com/img/${count}.jpg`;
+    const number = Math.floor(Math.random() * count) + 1
+    const imgUrl = `http://rx475xwwv.hb-bkt.clouddn.com/img/${number}.jpg`;
 
     // 拼接返回值
     return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>今日份问候：<br>${content}<br><br>今日份美图：<br><img src=${imgUrl} />`;
