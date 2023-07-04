@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
   schedule:
-    - cron: 20 5 * * *
+    - cron: 00 23 * * *
 
 jobs:
   run:
@@ -14,7 +14,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: sudo timedatectl set-timezone Asia/Shanghai
       - run: npm ci
       - run: npm install node-fetch
       - run: npm run main
