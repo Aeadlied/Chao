@@ -221,18 +221,19 @@ function getXZ_CC() {
       const luckycolor = dataAll.luckycolor;
       const luckyconstellation = dataAll.luckyconstellation;
       let result = "";
-      result += `每日星座运势，超超的：${title}<br>
+      result += `每日星座运势，超超的：<br>
+      【${title}】<br>
       宜：${yi}<br>
       忌：${ji}<br>
       短评：${shortcomment}<br>
       幸运数字：${luckynumber}<br>
       幸运颜色：${luckycolor}<br>
-      幸运搭档：${luckyconstellation}<br>
+      幸运搭档：${luckyconstellation}<br<br>
       今日运势：<br>
-      【总体，指数${alln}】：<br>${allt}<br>
-      【爱情，指数${loven}】：<br>${lovet}<br>
-      【工作，指数${workn}】：<br>${workt}<br>
-      【财富，指数${moneyn}】：<br>${moneyt}<br>
+      【总体，指数${alln}】：<br>${allt}<br><br>
+      【爱情，指数${loven}】：<br>${lovet}<br><br>
+      【工作，指数${workn}】：<br>${workt}<br><br>
+      【财富，指数${moneyn}】：<br>${moneyt}<br><br>
       【健康，指数${healthn}】：<br>${healtht}<br><br>`;
       return result;
     })
@@ -293,14 +294,14 @@ async function readLineFromFile(filePath) {
     const news = await getNews();
 
     // 拼接返回值
-    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>
-    ${DailyWordContent}
-    ${engilsh}
-    ${moyu}
-    ${xingzuo_tt}
-    ${xingzuo_cc}
-    ${news}
-    ${picurl}
+    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br><br>
+    ${DailyWordContent}<br>
+    ${engilsh}<br>
+    ${moyu}<br>
+    ${xingzuo_tt}<br>
+    ${xingzuo_cc}<br>
+    ${news}<br>
+    ${picurl}<br>
     历史上的今天：<br>${History}`;
   } catch (error) {
     console.error(error);
