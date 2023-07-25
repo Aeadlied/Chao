@@ -228,7 +228,7 @@ function getXZ_CC() {
       短评：${shortcomment}<br>
       幸运数字：${luckynumber}<br>
       幸运颜色：${luckycolor}<br>
-      幸运搭档：${luckyconstellation}<br<br>
+      幸运搭档：${luckyconstellation}<br><br>
       今日运势：<br>
       【总体，指数${alln}】：<br>${allt}<br><br>
       【爱情，指数${loven}】：<br>${lovet}<br><br>
