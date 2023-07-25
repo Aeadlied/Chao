@@ -25,7 +25,7 @@ function getDailyWordContent() {
     });
 }
 
-
+//获取历史上的今天
 //{
 //  "code": 1,
 //    "msg": "数据返回成功",
@@ -40,10 +40,11 @@ function getDailyWordContent() {
 //　　1976年9月9日，中国人民的领袖，伟大的无产阶级革命家、战略家和理论家，中国共产党、中国人民解放军和中华人民共和国的主要缔造者和领导人毛泽东逝世，享年83岁。
 //          今天（2016年9月9日）是毛泽东逝世40周年纪念日，让我们一起回顾他的一生，缅怀这位伟人。
 //          ..."
-//        }   
+//        }
 //      ...这里只显示了一条...
 //     ]
 //}
+
 //获取历史上的今天
 function getTodayInHistory() {
   return fetch("https://www.mxnzp.com/api/history/today?type=0&app_id=bnknpcpjmpeuxpng&app_secret=8NepUiNHNsFT0sn4GExANY6hgbeEGY4h")
@@ -76,6 +77,7 @@ function getTodayInHistory() {
     });
 }
 
+//获取每日壁纸
 function getTodayPic() {
   return fetch("https://bing.biturl.top")
     .then(response => response.json())
@@ -94,6 +96,169 @@ function getTodayPic() {
     });
 }
 
+//获取一句一言：
+function getYJYY() {
+  return fetch("https://api.vvhan.com/api/ian?type=json")
+    .then(response => response.json())
+    .then(data => {
+      // 获取 data 字段的值
+      const dataList = data.data;
+      const sentence = dataList.vhan;
+      const source = dataList.source;
+      let result = "";
+      result += `今日份一句一言：<${sentence}<br>——《${source}》<br><br>`;
+      return result;
+    })
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
+}
+
+//获取每日励志英文
+function getLJYW() {
+  return fetch("https://api.vvhan.com/api/en")
+    .then(response => response.json())
+    .then(data => {
+      // 获取 data 字段的值
+      const dataList = data.data;
+      const en = dataList.en;
+      const zh = dataList.zh;
+      let result = "";
+      result += `今日份励志英文：<${en}<br>${zh}<br><br>`;
+      return result;
+    })
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
+}
+
+//获取摸鱼人日历
+function getMoyu() {
+  return fetch("https://api.vvhan.com/api/moyu?type=json")
+    .then(response => response.json())
+    .then(data => {
+      // 获取 data 字段的值
+      const url = data.url;
+      let result = "";
+      result += `摸鱼人日历：<br><img src='${url}' /><br><br>`;
+      return result;
+    })
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
+}
+
+//获取星座运势天天的
+function getXZ_TT() {
+  return fetch("https://api.vvhan.com/api/horoscope?type=cancer&time=today")
+    .then(response => response.json())
+    .then(data => {
+      const dataAll = data.data;
+      const title = dataAll.title;
+      const yi = dataAll.todo.yi;
+      const ji = dataAll.todo.ji;
+      const shortcomment = dataAll.shortcomment;
+      const alln = dataAll.index.all;
+      const allt = dataAll.fortunetext.all;
+      const loven = dataAll.index.love;
+      const lovet = dataAll.fortunetext.love;
+      const workn = dataAll.index.work;
+      const workt = dataAll.fortunetext.work;
+      const moneyn = dataAll.index.money;
+      const moneyt = dataAll.fortunetext.money;
+      const healthn = dataAll.index.health;
+      const healtht = dataAll.fortunetext.health;
+      const luckynumber = dataAll.luckynumber;
+      const luckycolor = dataAll.luckycolor;
+      const luckyconstellation = dataAll.luckyconstellation;
+      let result = "";
+      result += `每日星座运势，天天的：${title}<br>
+      宜：${yi}<br>
+      忌：${ji}<br>
+      短评：${shortcomment}<br>
+      幸运数字：${luckynumber}<br>
+      幸运颜色：${luckycolor}<br>
+      幸运搭档：${luckyconstellation}<br>
+      今日运势：<br>
+      【总体，指数${alln}】：<br>${allt}<br>
+      【爱情，指数${loven}】：<br>${lovet}<br>
+      【工作，指数${workn}】：<br>${workt}<br>
+      【财富，指数${moneyn}】：<br>${moneyt}<br>
+      【健康，指数${healthn}】：<br>${healtht}<br><br>`;
+      return result;
+    })
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
+}
+
+//获取星座运势超超的
+function getXZ_CC() {
+  return fetch("https://api.vvhan.com/api/horoscope?type=aries&time=today")
+    .then(response => response.json())
+    .then(data => {
+      const dataAll = data.data;
+      const title = dataAll.title;
+      const yi = dataAll.todo.yi;
+      const ji = dataAll.todo.ji;
+      const shortcomment = dataAll.shortcomment;
+      const alln = dataAll.index.all;
+      const allt = dataAll.fortunetext.all;
+      const loven = dataAll.index.love;
+      const lovet = dataAll.fortunetext.love;
+      const workn = dataAll.index.work;
+      const workt = dataAll.fortunetext.work;
+      const moneyn = dataAll.index.money;
+      const moneyt = dataAll.fortunetext.money;
+      const healthn = dataAll.index.health;
+      const healtht = dataAll.fortunetext.health;
+      const luckynumber = dataAll.luckynumber;
+      const luckycolor = dataAll.luckycolor;
+      const luckyconstellation = dataAll.luckyconstellation;
+      let result = "";
+      result += `每日星座运势，超超的：${title}<br>
+      宜：${yi}<br>
+      忌：${ji}<br>
+      短评：${shortcomment}<br>
+      幸运数字：${luckynumber}<br>
+      幸运颜色：${luckycolor}<br>
+      幸运搭档：${luckyconstellation}<br>
+      今日运势：<br>
+      【总体，指数${alln}】：<br>${allt}<br>
+      【爱情，指数${loven}】：<br>${lovet}<br>
+      【工作，指数${workn}】：<br>${workt}<br>
+      【财富，指数${moneyn}】：<br>${moneyt}<br>
+      【健康，指数${healthn}】：<br>${healtht}<br><br>`;
+      return result;
+    })
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
+}
+
+//60秒读懂世界
+function getNews() {
+  return fetch("https://api.vvhan.com/api/60s?type=json")
+    .then(response => response.json())
+    .then(data => {
+      // 获取 data 字段的值
+      const url = data.imgUrl;
+      let result = "";
+      result += `每天60秒读懂世界：<br><img src='${url}' /><br><br>`;
+      return result;
+    })
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
+}
+
+
 async function readLineFromFile(filePath) {
   try {
      // 读取颜表情
@@ -104,37 +269,7 @@ async function readLineFromFile(filePath) {
     // 随机生成要读取的行数
     const lineNumberFace = Math.floor(Math.random() * linesFace.length) + 1;
     // 获取指定行的内容
-   const lineContentFace = linesFace[lineNumberFace - 1];
-
-   // //读取句子
-   // // 读取文件内容
-   // const data = await readRemoteFile(filePath);
-   // // 将文件内容按行分割
-   // const lines = data.split('\n');
-   // // 随机生成要读取的行数
-   // const lineNumber = Math.floor(Math.random() * lines.length) + 1;
-   // // 获取指定行的内容并返回
-   //const lineContent = lines[lineNumber - 1];
-   // // 使用正则表达式匹配行号和句子
-   // const matchResult = lineContent.match(/^(\d+)\.\s+(.*)$/);
-   // // 如果匹配成功，则返回去掉行号的句子；否则返回原始内容
-   // const content = matchResult ? matchResult[2].trim() : lineContent.trim();
-
-   ////读取图片
-    //const countOfImgPath = 'http://rx475xwwv.hb-bkt.clouddn.com/CountOfImage.txt';
-    //const dataCount = await readRemoteFile(countOfImgPath);
-    //// 将文件内容按行分割
-    //const linesCount = dataCount.split('\n');
-    //const count = linesCount[0];
-    //const number = Math.floor(Math.random() * count) + 1
-    //const imgUrl = `http://rx475xwwv.hb-bkt.clouddn.com/img/${number}.jpg`;
-
-   //调用API获取每日一句
-    const DailyWordContent = await getDailyWordContent();
-    //调用API获取历史上的今天
-    const History = await getTodayInHistory();
-    //调用API获取壁纸
-    const picurl = await getTodayPic();
+    const lineContentFace = linesFace[lineNumberFace - 1];
 
     // 计算在一起的天数
     const now = new Date();
@@ -142,13 +277,30 @@ async function readLineFromFile(filePath) {
     const diffInDays = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
     // 计算认识的天数
     const start2 = new Date('2005-09-01');
-    const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24))  + 1;
+    const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24)) + 1;
+
+   //调用API获取每日一句一言
+    const DailyWordContent = await getYJYY();
+    //调用API获取历史上的今天
+    const History = await getTodayInHistory();
+    //调用API获取壁纸
+    const picurl = await getTodayPic();
+    const engilsh = await getLJYW();
+    const moyu = await getMoyu();
+    const xingzuo_tt = await getXZ_TT();
+    const xingzuo_cc = await getXZ_CC();
+    const news = await getNews();
 
     // 拼接返回值
-    //return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>
-    //每日一句：<br>${DailyWordContent}<br><br>历史上的今天：<br><img src=${imgUrl} />`;
     return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>
-    每日一句：<br>${DailyWordContent}<br><br>${picurl}历史上的今天：<br>${History}`;
+    ${DailyWordContent}
+    ${engilsh}
+    ${moyu}
+    ${xingzuo_tt}
+    ${xingzuo_cc}
+    ${news}
+    ${picurl}
+    历史上的今天：<br>${History}`;
   } catch (error) {
     console.error(error);
   }
