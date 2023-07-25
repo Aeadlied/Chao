@@ -64,7 +64,8 @@ function getTodayInHistory() {
         const day = dataList[i].day;
         //const details = dataList[i].details;
         // 拼接这些值成一个字符串，并将其添加到 result 字符串中
-        result += `【${year}年${month}月${day}日】<br><img src=${picUrl} /><br>${title}<br><br>`;
+        /* result += `【${year}年${month}月${day}日】<br><img src=${picUrl} /><br>${title}<br><br>`;*/
+         result += `【${year}年${month}月${day}日】<br>${title}<br><br>`;
       }
       // 返回拼接好的字符串
       return result;
@@ -83,7 +84,7 @@ function getTodayPic() {
       const url = data.url;
       const copyright = data.copyright;
       let result = "";
-      result += `今日份壁纸：<br><img src=${url} /><br>${copyright}<br><br>`;
+      result += `今日份壁纸：<br><img src='${url}' /><br>${copyright}<br><br>`;
       // 返回拼接好的字符串
       return result;
     })
