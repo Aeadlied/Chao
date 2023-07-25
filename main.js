@@ -9,6 +9,22 @@ async function readRemoteFile(url) {
   return await response.text();
 }
 
+//获取每日一问：
+function getDailyWordContent() {
+  return fetch("https://www.mxnzp.com/api/daily_word/recommend?count=1&app_id=bnknpcpjmpeuxpng&app_secret=8NepUiNHNsFT0sn4GExANY6hgbeEGY4h")
+    .then(response => response.json())
+    .then(data => {
+      // 获取 data 字段的值
+      const dataList = data.data;
+      // 返回第一个元素的 content 值
+      return dataList[0].content;
+    })
+    .catch(error => {
+      console.log(error);
+      return null;
+    });
+}
+
 async function readLineFromFile(filePath) {
   try {
      // 读取颜表情
@@ -21,19 +37,23 @@ async function readLineFromFile(filePath) {
     // 获取指定行的内容
    const lineContentFace = linesFace[lineNumberFace - 1];
 
-    //读取句子
-    // 读取文件内容
-    const data = await readRemoteFile(filePath);
-    // 将文件内容按行分割
-    const lines = data.split('\n');
-    // 随机生成要读取的行数
-    const lineNumber = Math.floor(Math.random() * lines.length) + 1;
-    // 获取指定行的内容并返回
-   const lineContent = lines[lineNumber - 1];
-    // 使用正则表达式匹配行号和句子
-    const matchResult = lineContent.match(/^(\d+)\.\s+(.*)$/);
-    // 如果匹配成功，则返回去掉行号的句子；否则返回原始内容
-    const content = matchResult ? matchResult[2].trim() : lineContent.trim();
+   // //读取句子
+   // // 读取文件内容
+   // const data = await readRemoteFile(filePath);
+   // // 将文件内容按行分割
+   // const lines = data.split('\n');
+   // // 随机生成要读取的行数
+   // const lineNumber = Math.floor(Math.random() * lines.length) + 1;
+   // // 获取指定行的内容并返回
+   //const lineContent = lines[lineNumber - 1];
+   // // 使用正则表达式匹配行号和句子
+   // const matchResult = lineContent.match(/^(\d+)\.\s+(.*)$/);
+   // // 如果匹配成功，则返回去掉行号的句子；否则返回原始内容
+   // const content = matchResult ? matchResult[2].trim() : lineContent.trim();
+
+   //调用API获取每日一句
+    const DailyWordContent = getDailyWordContent();
+
     // 计算在一起的天数
     const now = new Date();
     const start = new Date('2023-02-04');
@@ -52,7 +72,8 @@ async function readLineFromFile(filePath) {
     const imgUrl = `http://rx475xwwv.hb-bkt.clouddn.com/img/${number}.jpg`;
 
     // 拼接返回值
-    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>今日份问候：<br>${content}<br><br>今日份美图：<br><img src=${imgUrl} />`;
+    return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>
+    每日一句：<br>${DailyWordContent}<br><br>今日份美图：<br><img src=${imgUrl} />`;
   } catch (error) {
     console.error(error);
   }
