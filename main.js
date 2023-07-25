@@ -52,7 +52,7 @@ async function readLineFromFile(filePath) {
    // const content = matchResult ? matchResult[2].trim() : lineContent.trim();
 
    //调用API获取每日一句
-    const DailyWordContent = getDailyWordContent();
+    const DailyWordContent = await getDailyWordContent();
 
     // 计算在一起的天数
     const now = new Date();
