@@ -46,7 +46,7 @@ function getDailyWordContent() {
 //}
 //获取历史上的今天
 function getTodayInHistory() {
-  return fetch("https://www.mxnzp.com/api/history/today?type=1&app_id=bnknpcpjmpeuxpng&app_secret=8NepUiNHNsFT0sn4GExANY6hgbeEGY4h")
+  return fetch("https://www.mxnzp.com/api/history/today?type=0&app_id=bnknpcpjmpeuxpng&app_secret=8NepUiNHNsFT0sn4GExANY6hgbeEGY4h")
     .then(response => response.json())
     .then(data => {
       // 获取 data 数组的值
@@ -56,13 +56,14 @@ function getTodayInHistory() {
       // 遍历 dataList 数组中的每个元素
       for (let i = 0; i < dataList.length; i++) {
         // 获取每个元素的 title, year, month, day 和 details 字段的值
+        const picUrl = dataList[i].picUrl;
         const title = dataList[i].title;
         const year = dataList[i].year;
         const month = dataList[i].month;
         const day = dataList[i].day;
-        const details = dataList[i].details;
+        //const details = dataList[i].details;
         // 拼接这些值成一个字符串，并将其添加到 result 字符串中
-        result += `【${year}年${month}月${day}日】<br>${title}<br>${details}<br><br>`;
+        result += `【${year}年${month}月${day}日】<br><img src=${picUrl} /><br>${title}<br><br>`;
       }
       // 返回拼接好的字符串
       return result;
@@ -76,8 +77,8 @@ function getTodayInHistory() {
 async function readLineFromFile(filePath) {
   try {
      // 读取颜表情
-    const facePath = 'http://rx475xwwv.hb-bkt.clouddn.com/face.txt';
-    const dataFace = await readRemoteFile(facePath);
+    const facePath = './face.txt';
+    const dataFace = await fs.readFile(facePath, 'utf8');
     // 将文件内容按行分割
     const linesFace = dataFace.split('\n');
     // 随机生成要读取的行数
@@ -120,8 +121,6 @@ async function readLineFromFile(filePath) {
     // 计算认识的天数
     const start2 = new Date('2005-09-01');
     const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24))  + 1;
-
-    
 
     // 拼接返回值
     //return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>
