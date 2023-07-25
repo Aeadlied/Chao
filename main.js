@@ -40,7 +40,7 @@ function getDailyWordContent() {
 //　　1976年9月9日，中国人民的领袖，伟大的无产阶级革命家、战略家和理论家，中国共产党、中国人民解放军和中华人民共和国的主要缔造者和领导人毛泽东逝世，享年83岁。
 //          今天（2016年9月9日）是毛泽东逝世40周年纪念日，让我们一起回顾他的一生，缅怀这位伟人。
 //          ..."
-//        }
+//        }   
 //      ...这里只显示了一条...
 //     ]
 //}
@@ -66,6 +66,24 @@ function getTodayInHistory() {
         // 拼接这些值成一个字符串，并将其添加到 result 字符串中
         result += `【${year}年${month}月${day}日】<br><img src=${picUrl} /><br>${title}<br><br>`;
       }
+      // 返回拼接好的字符串
+      return result;
+    })
+    .catch(error => {
+      console.log(error);
+      return length;
+    });
+}
+
+function getTodayPic() {
+  return fetch("https://bing.biturl.top")
+    .then(response => response.json())
+    .then(data => {
+      // 获取url
+      const url = data.url;
+      const copyright = data.copyright;
+      let result = "";
+      result += `今日份壁纸：<br><img src=${url} /><br>${copyright}<br><br>`;
       // 返回拼接好的字符串
       return result;
     })
@@ -114,6 +132,8 @@ async function readLineFromFile(filePath) {
     const DailyWordContent = await getDailyWordContent();
     //调用API获取历史上的今天
     const History = await getTodayInHistory();
+    //调用API获取壁纸
+    const picurl = await getTodayPic();
 
     // 计算在一起的天数
     const now = new Date();
@@ -127,7 +147,7 @@ async function readLineFromFile(filePath) {
     //return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>
     //每日一句：<br>${DailyWordContent}<br><br>历史上的今天：<br><img src=${imgUrl} />`;
     return `今天是我们在一起的第${diffInDays}天\n<br>今天是我们认识的第${diffInDays2}天<br>${lineContentFace}<br><br>
-    每日一句：<br>${DailyWordContent}<br><br>历史上的今天：<br>${History}`;
+    每日一句：<br>${DailyWordContent}<br><br>${picurl}历史上的今天：<br>${History}`;
   } catch (error) {
     console.error(error);
   }
