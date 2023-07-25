@@ -54,6 +54,7 @@ function getTodayInHistory() {
       // 定义一个空字符串，用于拼接所有的数据
       let result = "";
       // 遍历 dataList 数组中的每个元素
+      const length = dataList.length;
       for (let i = 0; i < dataList.length; i++) {
         // 获取每个元素的 title, year, month, day 和 details 字段的值
         const picUrl = dataList[i].picUrl;
@@ -70,7 +71,7 @@ function getTodayInHistory() {
     })
     .catch(error => {
       console.log(error);
-      return null;
+      return length;
     });
 }
 
