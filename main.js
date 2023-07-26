@@ -298,8 +298,6 @@ async function readLineFromFile(filePath) {
     ${DailyWordContent}<br>
     ${engilsh}<br>
     ${moyu}<br>
-    ${xingzuo_tt}<br>
-    ${xingzuo_cc}<br>
     ${news}<br>
     ${picurl}<br>
     历史上的今天：<br>${History}`;
