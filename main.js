@@ -276,10 +276,10 @@ async function readLineFromFile(filePath) {
     // 计算在一起的天数
     const now = new Date();
     const start = new Date('2023-02-04');
-    const diffInDays = Math.floor((now - start) / (1000 * 60 * 60 * 24)) + 1;
+    const diffInDays = Math.floor((now - start) / (1000 * 60 * 60 * 24));
     // 计算认识的天数
     const start2 = new Date('2005-09-01');
-    const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24)) + 1;
+    const diffInDays2 = Math.floor((now - start2) / (1000 * 60 * 60 * 24));
 
    //调用API获取每日一句一言
     const DailyWordContent = await getYJYY();
